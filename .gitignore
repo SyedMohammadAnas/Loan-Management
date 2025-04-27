@@ -1,0 +1,75 @@
+# Node modules
+node_modules/
+
+# Build output
+.next/
+
+# Dependency directories
+bower_components/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js specific
+.next/
+out/
+
+# Vercel
+.vercel/
+
+# Mac OS generated files
+.DS_Store
+
+# Supabase
+.supabase/
+
+# Resend
+.resend/
+
+# Nodemailer
+.nodemailer/
+
+# NextAuth
+.nextauth/
+
+# Next.js
+.next/
+
+# Ignore specific JavaScript files
+apply_personal_payments_rls_fix.js
+apply_personal_payments_status_column.js
+apply_simple_loans_migration.js
+
+# Ignore Tailwind and PostCSS config files
+tailwind.config.js
+postcss.config.mjs
+
+# Ignore components.js file
+components.json
+
+# Ignore Node.js and TypeScript configuration files
+package-lock.json
+package.json
+tsconfig.json
+tsconfig.node.json
+
+# Ignore Next.js environment and configuration files
+next-env.d.ts
+next.config.ts
+
+eslint.config.mjs
+
+migrations/

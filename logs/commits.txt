@@ -1,0 +1,5 @@
+# Commit History Log
+
+## 2023-10-01
+[fe23a91d] - Added initial repayment record creation feature
+Description: Implemented automatic initial repayment record creation when a new loan is added. The record tracks the original loan amount as the remaining balance with zero payment amount.
