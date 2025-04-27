@@ -13,7 +13,7 @@ export const dynamic = 'force-dynamic';
  * POST handler for logout
  * Clears session cookies and related database records
  */
-export async function POST(request: NextRequest) {
+export async function POST() {
   try {
     // Get the session cookie
     const cookieStore = await cookies();

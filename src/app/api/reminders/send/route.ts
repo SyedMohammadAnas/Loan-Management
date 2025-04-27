@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { renderPaymentReminderEmail } from '@/components/email/payment-reminder';
+import nodemailer from 'nodemailer';
 
 /**
  * PaymentData interface to match the component's expectations
@@ -31,7 +32,7 @@ const calculateRemainingDays = (dueDateStr: string): number => {
  * Fetches pending payments from personal_payments table and
  * sends an email to authorized email addresses
  */
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     console.log('Starting payment reminder API call');
 
@@ -146,19 +147,7 @@ export async function GET(request: NextRequest) {
       return payment;
     });
 
-    // Import nodemailer dynamically to avoid SSR issues
-    console.log('Loading nodemailer');
-    let nodemailer;
-    try {
-      nodemailer = require('nodemailer');
-    } catch (err) {
-      console.error('Failed to load nodemailer:', err);
-      return NextResponse.json(
-        { error: 'Failed to load nodemailer module', details: String(err) },
-        { status: 500 }
-      );
-    }
-
+    // No need to dynamically import nodemailer since we're importing it at the top
     console.log('Setting up email transporter');
     // Create transporter using environment variables (reusing same config as OTP)
     let transporter;
@@ -253,5 +242,5 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   // Simply call the GET implementation
-  return GET(request);
+  return GET();
 }

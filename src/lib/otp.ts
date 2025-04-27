@@ -4,6 +4,7 @@
  */
 
 import { supabase } from './supabase';
+import nodemailer from 'nodemailer';
 
 // OTP configuration
 const OTP_LENGTH = 6;
@@ -131,9 +132,6 @@ export const verifyOTP = async (email: string, otpAttempt: string): Promise<bool
  */
 export const sendOTPEmail = async (email: string, otp: string) => {
   try {
-    // Import nodemailer dynamically to avoid SSR issues
-    const nodemailer = require('nodemailer');
-
     // Create transporter using environment variables
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'smtp.gmail.com',
