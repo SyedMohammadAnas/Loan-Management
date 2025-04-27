@@ -53,23 +53,4 @@ apply_personal_payments_rls_fix.js
 apply_personal_payments_status_column.js
 apply_simple_loans_migration.js
 
-# Ignore Tailwind and PostCSS config files
-tailwind.config.js
-postcss.config.mjs
-
-# Ignore components.js file
-components.json
-
-# Ignore Node.js and TypeScript configuration files
-package-lock.json
-package.json
-tsconfig.json
-tsconfig.node.json
-
-# Ignore Next.js environment and configuration files
-next-env.d.ts
-next.config.ts
-
-eslint.config.mjs
-
 migrations/
