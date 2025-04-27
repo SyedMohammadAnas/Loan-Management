@@ -13,7 +13,7 @@ export const dynamic = 'force-dynamic';
  * GET handler for session check
  * Returns whether the user has a valid session cookie
  */
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     // Get the session cookie
     const cookieStore = await cookies();

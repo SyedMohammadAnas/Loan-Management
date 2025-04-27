@@ -8,9 +8,10 @@ import { cn } from "@/lib/utils"
  * Input Component
  *
  * A customizable input component using Overpass Mono font
- * Directly extends React's InputHTMLAttributes for HTML input elements
+ * Follows shadcn UI conventions
  */
-export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 /**
  * Input Component

@@ -93,6 +93,32 @@ Automatically sends email reminders for upcoming payments with clear visual indi
 5. Start the development server: `npm run dev`
 6. Open [http://localhost:3000](http://localhost:3000) in your browser
 
+## Deployment
+
+### Vercel Deployment
+
+This application is optimized for deployment on Vercel:
+
+1. Connect your GitHub repository to Vercel
+2. Set up the required environment variables in the Vercel dashboard
+3. Deploy from the main branch
+
+#### Handling ESLint Warnings
+
+The project includes configurations to prevent ESLint errors from failing the build:
+
+- ESLint warnings are ignored during builds using the `eslint.ignoreDuringBuilds: true` setting in `next.config.ts`
+- An `.eslintrc.json` file disables specific rules that might cause deployment issues
+- These settings ensure successful deployment while keeping the code quality tools available during development
+
+### Other Deployment Options
+
+To deploy to other platforms:
+
+1. Build the application: `npm run build`
+2. Start the production server: `npm run start`
+3. Ensure all environment variables are properly set up on your hosting platform
+
 ## Future Enhancements
 
 - Mobile application support
