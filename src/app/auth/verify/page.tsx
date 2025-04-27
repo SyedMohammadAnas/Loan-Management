@@ -7,12 +7,28 @@
  * Uses Overpass Mono font for consistent typography
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { OTPVerificationForm } from '@/components/otp-verification-form';
 import { motion } from 'framer-motion';
 import { isAuthorizedEmail } from '@/lib/supabase';
 import { GradientButton } from '@/components/ui/gradient-button';
+
+// Loading fallback for Suspense
+function VerifyPageLoading() {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-[#030303] font-overpass">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="text-white flex flex-col items-center"
+      >
+        <div className="mb-4 h-6 w-6 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+        <div>Loading verification page...</div>
+      </motion.div>
+    </div>
+  );
+}
 
 // Alternative email authorization check for client components
 const clientCheckAuthorizedEmail = (email: string): boolean => {
@@ -36,7 +52,8 @@ const clientCheckAuthorizedEmail = (email: string): boolean => {
   return isAuthorized;
 };
 
-export default function VerifyPage() {
+// Main component that uses search params
+function VerifyPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [initialEmail, setInitialEmail] = useState<string>('');
@@ -231,5 +248,14 @@ export default function VerifyPage() {
       {/* Background overlay gradient - Made more transparent */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#030303]/70 via-transparent to-[#030303]/70 pointer-events-none" />
     </div>
+  );
+}
+
+// The main page component with Suspense
+export default function VerifyPage() {
+  return (
+    <Suspense fallback={<VerifyPageLoading />}>
+      <VerifyPageContent />
+    </Suspense>
   );
 }
