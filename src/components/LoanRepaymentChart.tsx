@@ -13,7 +13,10 @@ import {
   Title,
   Tooltip,
   Legend,
-  Filler
+  Filler,
+  ChartType,
+  ChartData,
+  ChartOptions
 } from 'chart.js';
 
 // Register Chart.js components
@@ -71,7 +74,7 @@ interface LoanRepaymentChartProps {
 export function LoanRepaymentChart({ selectedLoan }: LoanRepaymentChartProps) {
   const [repayments, setRepayments] = useState<Repayment[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const chartRef = useRef<ChartJS>(null);
+  const chartRef = useRef<ChartJS<'line'>>(null);
 
   /**
    * Fetch repayment data when a loan is selected
@@ -124,7 +127,7 @@ export function LoanRepaymentChart({ selectedLoan }: LoanRepaymentChartProps) {
   /**
    * Prepare chart data from repayments
    */
-  const chartData = {
+  const chartData: ChartData<'line'> = {
     labels: repayments.map(r => formatDate(r.repayment_date)),
     datasets: [
       {
@@ -141,7 +144,7 @@ export function LoanRepaymentChart({ selectedLoan }: LoanRepaymentChartProps) {
   /**
    * Chart options
    */
-  const chartOptions = {
+  const chartOptions: ChartOptions<'line'> = {
     responsive: true,
     maintainAspectRatio: false,
     animations: {
@@ -206,7 +209,7 @@ export function LoanRepaymentChart({ selectedLoan }: LoanRepaymentChartProps) {
       },
       tooltip: {
         callbacks: {
-          label: function(context: any) {
+          label: function(context) {
             let label = context.dataset.label || '';
             if (label) {
               label += ': ';
@@ -230,7 +233,7 @@ export function LoanRepaymentChart({ selectedLoan }: LoanRepaymentChartProps) {
     },
     interaction: {
       intersect: false,
-      mode: 'index' as const,
+      mode: 'index',
     },
   };
 
